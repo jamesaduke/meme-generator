@@ -2,12 +2,17 @@ import React from 'react';
 import memesData from '../data/memeData';
 const Meme = () => {
 
-  function getMeme (memeItem) {
+  const [memeImage, setMemeImage] = React.useState("");
+
+  function getMemeImage(event) {
+    event.preventDefault();
     const memesArray = memesData.data.memes;
-    const randomNumber = Math.floor(Math.random() * memesArray.length);
-    const url = memesArray[randomNumber].url;
-    console.log(url);
+    const randomNumber = Math.floor(Math.random() * memesArray.length)
+    // In this case the old value of state does not determine the new value of state
+    setMemeImage(memesArray[randomNumber].url)
   }
+
+
   return (
     <main>
 
@@ -19,8 +24,9 @@ const Meme = () => {
                 className='form--input'
                 placeholder='Bottom Text' />
 
-            <button onClick={getMeme} className='form--button'>Get a new Meme Image 🖼</button>
+            <button onClick={getMemeImage} className='form--button'>Get a new Meme Image 🖼</button>
         </form>
+        <img src={memeImage} className="meme--image" />
     </main>
   )
 }
