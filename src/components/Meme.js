@@ -1,6 +1,13 @@
 import React from 'react';
-
+import memesData from '../data/memeData';
 const Meme = () => {
+
+  function getMeme (memeItem) {
+    const memesArray = memesData.data.memes;
+    const randomNumber = Math.floor(Math.random() * memesArray.length);
+    const url = memesArray[randomNumber].url;
+    console.log(url);
+  }
   return (
     <main>
 
@@ -12,7 +19,7 @@ const Meme = () => {
                 className='form--input'
                 placeholder='Bottom Text' />
 
-            <button className='form--button'>Get a new Meme Image 🖼</button>
+            <button onClick={getMeme} className='form--button'>Get a new Meme Image 🖼</button>
         </form>
     </main>
   )
